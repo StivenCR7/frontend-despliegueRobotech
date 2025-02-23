@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + React</title>
+  <style>
+    body {
+      background-color: black;
+      --scroll-size: 10px;
+      /* Ancho del scroll */
+      --scroll-radius: 10px;
+      /* Bordes redondeados */
+      --scroll-track: rgb(0 0 0 / 40%);
+      /* Color del track */
+      --scroll-thumb-color: #dfdfdf;
+      /* Color del thumb */
+    }
+
+    /* Personalización del scroll */
+    body::-webkit-scrollbar {
+      width: var(--scroll-size);
+      height: var(--scroll-size);
+    }
+
+    body::-webkit-scrollbar-track {
+      background: var(--scroll-track);
+      /* Usa la variable definida */
+      border-radius: var(--scroll-radius);
+    }
+
+    body::-webkit-scrollbar-thumb {
+      background: var(--scroll-thumb-color);
+      /* Usa la variable definida */
+      border-radius: var(--scroll-radius);
+      background-clip: content-box;
+      /* Evita que el borde transparente cubra el fondo */
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>

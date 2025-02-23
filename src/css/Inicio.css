@@ -1,0 +1,257 @@
+/* --- Global Styles --- */
+* {
+  font-family: "Acme", serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #121212;
+  color: #fff;
+  line-height: 1.6;
+}
+
+/* --- Main Container --- */
+.container-inicio2 {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  flex-wrap: wrap; /* Para hacerlo responsive */
+}
+
+/* --- Sidebar (Torneos & Categorías) --- */
+.sidebar-inicio2 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 22%;
+  min-width: 250px;
+  background: linear-gradient(145deg, #1a1a1a, #1e1e1e);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.logo-inicio2 {
+  font-size: 1.8rem;
+  color: #00b0f4;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Estilo para cada torneo y categoría */
+.box-pos2 {
+  background-color: #2a2a2a;
+  padding: 12px 18px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s;
+}
+
+.box-pos2:hover {
+  background-color: #00b0f4;
+  color: white;
+  transform: scale(1.05);
+}
+
+.selected2 {
+  background-color: #00b0f4;
+  color: white;
+}
+
+/* --- Main Content --- */
+.main-content-inicio {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  flex-wrap: wrap; /* Para hacerlo adaptable */
+}
+
+/* --- Schedule (Encuentros) --- */
+.schedule-section-inicio {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.match-schedule-inicio {
+  background: linear-gradient(145deg, #1a1a1a, #1e1e1e);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.match-card-inicio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+  transition: background 0.3s ease;
+}
+
+.match-card-inicio:hover {
+  background-color: #00b0f4;
+}
+
+/* Botón de Play */
+.play-btn-inicio {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.teams-inicio {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.team-inicio {
+  font-weight: bold;
+}
+
+.score-inicio {
+  font-size: 1rem;
+  color: #f7f7f7;
+}
+
+.vs-inicio {
+  font-weight: bold;
+  color: #fff;
+}
+
+/* --- Right Section (Ranking & News) --- */
+.right-section-inicio {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Ranking */
+.global-rankings-inicio {
+  background: linear-gradient(145deg, #1a1a1a, #1e1e1e);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.global-rankings-inicio h3 {
+  font-size: 1.2rem;
+  border-bottom: 2px solid #00b0f4;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+/* Tabla de Ranking */
+.tabla-estilo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tabla-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  color: #00b0f4;
+}
+
+.fila {
+  display: flex;
+  justify-content: space-between;
+  background-color: #2a2a2a;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.fila:hover {
+  background-color: #00b0f4;
+  color: white;
+}
+
+/* Noticias */
+.news-section-inicio {
+  background: linear-gradient(145deg, #1a1a1a, #1e1e1e);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.news-section-inicio h3 {
+  font-size: 1.2rem;
+  border-bottom: 2px solid #00b0f4;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+/* Estilo de cada noticia */
+.news-section-inicio ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.news-section-inicio li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: #2a2a2a;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.news-section-inicio li:hover {
+  background-color: #00b0f4;
+  
+}
+
+.news-section-inicio img {
+  border-radius: 8px;
+  width: 70px;
+  height: 70px;
+}
+
+.texto-truncado p {
+  font-weight: bold;
+  max-width: 100px; /* Ajusta según lo que desees mostrar */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.texto-truncado span {
+  font-weight: bold;
+  max-width: 100px; /* Ajusta según lo que desees mostrar */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* --- Links --- */
+a {
+  text-decoration: none;
+  color: #00b0f4;
+  font-weight: bold;
+}
+
+a:hover {
+  color: #00e6ff;
+}
+.details-inicio{
+  color: #fff;
+}

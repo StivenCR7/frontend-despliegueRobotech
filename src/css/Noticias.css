@@ -1,0 +1,240 @@
+.noticias {
+    padding: 30px;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.cabecera-noticias {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 50px 20px;
+}
+
+.titulo-noticias {
+    font-size: 6rem;
+}
+
+.noticias-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    justify-items: center;
+    padding: 20px;
+}
+
+.noticia {
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+.noticia h2 {
+    font-size: 1.4rem;
+    margin: 10px 0;
+    color: white;
+    /* Cambia el color del título a blanco */
+}
+
+.imagen-noti {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+.noticia h2 {
+    font-size: 1.4rem;
+    margin: 10px 0;
+    text-align: justify;
+    
+}
+
+.noticia p {
+    font-size: 1rem;
+    color: #b3b3b3;
+    text-align: justify;
+}
+
+/* General styles */
+.botones-noti {
+    text-align: center;
+    margin-top: 30px;
+}
+
+button.noti {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.btn-cargar-noti {
+    background-color: #0CBFBF;
+    color: #ffffff;
+}
+
+.btn-cargar-noti:hover {
+    background-color: #00b3b3;
+}
+
+.btn-agregar-noticias {
+    background-color: #0CBFBF;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-agregar-noticias:hover {
+    background-color: #00b3b3;
+}
+
+.btn-editar-noti {
+    background-color: #0CBFBF;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-editar-noti:hover {
+    background-color: #00b3b3;
+}
+
+.btn-eliminar-noti {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.btn-eliminar-noti:hover {
+    background-color: #c82333;
+}
+
+.modal-overlay-noti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.modal-content-noti {
+    background-color: #212529;
+    border-radius: 8px;
+    padding: 30px;
+    width: 350px;
+    max-width: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Acme", serif;
+}
+
+.modal-content-noti input,
+.modal-content-noti textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 70%;
+    margin: 10px 0;
+    text-align: center;
+    font-family: "Acme", serif;
+}
+
+.textarea-descripcion-noticias {
+    height: 100px;
+    resize: vertical;
+}
+
+.modal-content-noti input:focus,
+.modal-content-noti textarea:focus {
+    border-color: #424242;
+    outline: none;
+    box-shadow: 0 0 4px #424242;
+}
+
+.modal-content-noti button {
+    background-color: #2c2c2c;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 50%;
+    margin-top: 15px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    font-family: "Acme", serif;
+}
+
+.modal-content-noti button:hover {
+    background-color: #3b3b3b;
+}
+
+.modal-content-noti h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.textarea-descripcion-noticias {
+    width: 100%;
+    height: 100px;
+    font-size: 1rem;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #333;
+    border-radius: 5px;
+    border: none;
+    resize: vertical;
+    overflow-y: auto;
+    color: white;
+}
+
+#form-noticia input {
+    width: 70%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+
+#submit-noti {
+    background-color: #0CBFBF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#submit-noti:hover {
+    background-color: #00b3b3;
+}

@@ -1,0 +1,167 @@
+/* Contenedor principal del bracket */
+.bracket-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+/* Títulos de las rondas */
+.ronda-title {
+    width: 90%;
+    padding: 15px 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    border-bottom: 2px solid #00b7ff;
+    margin-bottom: 20px;
+    z-index: 5;
+    position: absolute; /* Posiciona los títulos de forma absoluta dentro del contenedor */
+    top: -60px; /* Ajusta la posición superior para alinearlos bien con los encuentros */
+    text-align: center; /* Centra el texto */
+    background-color: #1e1e1e; /* Fondo oscuro para que el texto se vea claro */
+}
+/* Asegura que los títulos estén alineados con los encuentros */
+.titles span {
+    width: 250px; /* Alinea los títulos con los encuentros */
+    text-align: center;
+    
+     /* Centra el texto */
+}
+
+
+/* Selectores de torneo y categoría */
+.selector-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.selector-container select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #00b7ff;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.selector-container select:hover {
+    border-color: #007acc;
+}
+
+/* Agregar un pequeño espacio entre los títulos y los encuentros */
+.contenedorrondas {
+    width: 95%;
+    height: auto;
+    overflow-y: auto;
+    border: 2px solid #00b7ff;
+    border-radius: 10px;
+    background-color: #1e1e1e;
+    margin-top: 90px;
+    box-shadow: 0 0 12px rgba(0, 183, 255, 0.3);
+    padding-top: 10px; /* Agrega un poco de espacio por encima para los títulos */
+}
+/* Estilo del scroll en navegadores Webkit (Chrome, Edge, Safari) */
+
+
+.contenedorrondas::-webkit-scrollbar-track {
+    background: #1e1e1e;
+    border-radius: 10px;
+}
+
+.contenedorrondas::-webkit-scrollbar-thumb {
+    background: #00b7ff;
+    border-radius: 10px;
+}
+
+
+ 
+  
+
+/* Contenedor del bracket */
+.bracket {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-top: 50px;
+    justify-content: space-between;
+    gap: 20px;
+}
+/* Columnas del bracket */
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
+    position: relative; /* Necesario para que el z-index funcione correctamente */
+}
+/* Cada encuentro */
+.match {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 90px;
+    margin: 12px;
+    background: #2c2c2c;
+    border-radius: 10px;
+    border: 2px solid #444;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.match:hover {
+    transform: scale(1.05);
+    background-color: #383838;
+    z-index: 10; /* Para que el hover se muestre encima */
+}
+
+/* Equipos dentro del encuentro */
+.match .team {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Destacar al ganador */
+.match.winner-top .match-top,
+.match.winner-bottom .match-bottom {
+    background: linear-gradient(90deg, #00b7ff, #007acc);
+    font-weight: bold;
+    color: #ffffff;
+    border-radius: 8px;
+}
+
+/* Ajuste para diferenciar los ganadores */
+.winner-top {
+    color: white;
+    font-weight: bold;
+}
+
+.winner-bottom {
+    color: white;
+    font-weight: bold;
+}
+
+/* Botones generales */
+button {
+    background-color: #00b7ff;
+    color: #ffffff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #007acc;
+}

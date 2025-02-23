@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Londrina+Solid:wght@100;300;400;900&display=swap');
+
+
+
+.container-soli {
+
+   
+    padding: 25px;
+}
+
+h1 {
+    font-family: "Acme", serif;
+    padding: 15px 0 0 0;
+    text-align: center;
+    
+    font-size: 2.5em;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    border-bottom: 2px solid #ffffff;
+}
+
+td select {
+    padding: 5px;
+    font-size: 1em;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+}
+select {
+    padding: 5px;
+    font-size: 1em;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    align-items: center;
+}
+
+td select:focus {
+    outline: none;
+    box-shadow: 0 0 5px #ffffff;
+}
+
+button {
+    background-color: #0CBFBF;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #00b3b3;
+}
+
+div {
+    text-align: center;
+}

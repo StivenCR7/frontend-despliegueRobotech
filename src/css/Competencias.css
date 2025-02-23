@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Londrina+Solid:wght@100;300;400;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+.crobot {
+    padding: 30px;
+    text-align: center;
+    /* Centrar el texto */
+}
+
+.crobot-container {
+    min-height: 100vh;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* Centrar el contenido */
+}
+
+.crobot .background-crobot {
+
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.cabecera-crobot {
+    display: flex;
+    justify-content: center;
+    /* Centrar el título */
+    align-items: center;
+    margin: 0 50px 20px;
+}
+
+.titulo-crobot {
+    font-size: 6rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    /* Agregar sombra al texto */
+}
+
+
+.contenido-crobot {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    /* Ajustar el ancho */
+    max-width: 1100px;
+    /* Tamaño máximo */
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    /* Sombra para el contenido */
+}
+
+.banner-image {
+    width: 100%;
+    /* Ajustar el banner al 100% del contenedor */
+    max-width: 1050px;
+    /* Tamaño máximo del banner */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    margin: 20px 0 0 0;
+    /* Espacio alrededor del banner */
+}
+
+.btn-participa-crobot {
+    background-color: #1cb1c1;
+    color: #111111;
+    text-decoration: none;
+    padding: 10px 20px;
+    /* Aumentar el padding */
+    border-radius: 20px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    font-family: "Acme", serif;
+    margin-top: 20px;
+    /* Espacio superior */
+}
+
+.btn-participa-crobot:hover {
+    background-color: #03e7e7;
+}
+
+.formulario-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* Fondo semitransparente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formulario-content {
+    background: #222;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    /* Ajusta el ancho del modal */
+    text-align: center;
+    color: white;
+}
+
+.formulario-content h2 {
+    margin-bottom: 15px;
+}
+
+.formulario-content label {
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.formulario-content input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 70%;
+    margin: 10px 0;
+    text-align: center;
+    font-family: "Acme", serif;
+}
+
+.formulario-content select {
+    width: 60%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.formulario-content button {
+    width: 55%;
+    padding: 10px;
+    margin-top: 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.formulario-content button:hover {
+    background-color: #0056b3;
+}
+
+.input-file {
+    display: none;
+    /* Oculta el input real */
+}
+
+.label-file {
+    display: inline-block;
+    background: #222;
+    /* Azul */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}

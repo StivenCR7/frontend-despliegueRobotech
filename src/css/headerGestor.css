@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Londrina+Solid:wght@100;300;400;900&display=swap');
+
+
+
+.navbar-hGR{
+  background-color: #212529;
+  padding: 16px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; 
+}
+
+
+.nav-container-hGR {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-hGR img {
+  height: 40px;
+}
+
+.nav-links-hGR {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 70px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-links-hGR a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-family: "Acme", serif;
+}
+
+.nav-links-hGR a:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-links-hGR a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background-color: #1cb1c1;
+  transition: width 0.3s ease;
+}
+
+.nav-links-hGR a:hover::after {
+  width: 100%;
+}
+
+.btn-login-hGR {
+  background-color: #1cb1c1;
+  color: #111111;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  font-family: "Acme", serif;
+}
+
+.btn-login-hGR:hover {
+  background-color: #03e7e7;
+}
+
+.main-content {
+  margin-top: 72px; /* Ajusta este valor según el tamaño de tu header */
+}
+
+

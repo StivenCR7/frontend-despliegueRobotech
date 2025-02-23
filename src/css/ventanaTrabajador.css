@@ -1,0 +1,120 @@
+/* Estilo general para la página */
+.containerPT {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: #1f1f1f;
+    /* Fondo oscuro */
+    color: #f0f0f0;
+    /* Texto claro */
+}
+
+.sidebarPT {
+    background: linear-gradient(145deg, #2b2b2b, #4e4e4e);
+    /* Efecto de gradiente */
+    border-radius: 10px;
+    padding: 2rem;
+    width: 250px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.profile-cardPT {
+    text-align: center;
+}
+
+.profile-avatar {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.profile-header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.profile-header p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    text-transform: capitalize;
+}
+
+.profile-details p {
+    font-size: 1rem;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+/* Estilos para la sección de edición */
+.contentPT {
+    flex-grow: 1;
+    padding: 2rem;
+}
+
+.toggle-btn {
+    background-color: #4e4e4e;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.toggle-btn:hover {
+    background-color: #2b2b2b;
+}
+
+.edit-card {
+    background-color: #333;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    /* Tamaño máximo para la card */
+    width: 100%;
+    /* Se ajusta el tamaño al 100% del contenedor */
+    margin: 0 auto;
+    /* Centra la card horizontalmente */
+}
+
+.edit-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.edit-card label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ccc;
+}
+
+.edit-card input {
+    width: 30%;
+    padding: 0.8rem;
+    margin-bottom: 1.2rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #444;
+    color: #fff;
+}
+
+.edit-card input:focus {
+    outline: none;
+    border: 2px solid #00bcd4;
+    /* Resalta el input con un color vibrante */
+}
+
+.update-btn {
+    background-color: #00bcd4;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.update-btn:hover {
+    background-color: #008c9e;
+}
