@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import Header from './headervalidacion';
 import '../css/validacion.css';
 import api from "../api";
@@ -11,7 +10,15 @@ const VentanaSolicitudesRobot = () => {
   const [categoriaId, setCategoriaId] = useState(1); // ID de la categoría que se desea filtrar
   const [categorias, setCategorias] = useState([]); // Lista de categorías
   const [torneos, setTorneos] = useState([]); // Lista de torneos
+  const [modalImage, setModalImage] = useState(null); // Estado para la imagen seleccionada
 
+  const handleImageClick = (imageUrl) => {
+    setModalImage(imageUrl); // Abrir el modal con la imagen seleccionada
+  };
+
+  const closeModal = () => {
+    setModalImage(null); // Cerrar el modal
+  };
   // Obtener lista de estados desde el backend
   useEffect(() => {
     api.get("/robots/estados")
@@ -192,7 +199,16 @@ const VentanaSolicitudesRobot = () => {
         </table>
         {/* Botón para guardar cambios */}
         <button className="btn-guardar-tra" onClick={handleEstadoChange}>Guardar Cambios</button>
+
       </div>
+      {/* Modal para mostrar la imagen ampliada */}
+      {modalImage && (
+        <div className="modal" onClick={closeModal}>
+          <div className="modal-content">
+            <img src={modalImage} alt="Robot Ampliado" />
+          </div>
+        </div>
+      )}
     </>
   );
 };
