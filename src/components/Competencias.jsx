@@ -152,9 +152,6 @@ const Competencias = () => {
                                         value={formData.nombre}
                                         onChange={handleChange}
                                         placeholder="Nombre"
-                                        pattern="[A-Za-z\s]+"
-                                        onInvalid={(e) => e.target.setCustomValidity('El nombre solo puede contener letras.')}
-                                        onInput={(e) => e.target.setCustomValidity('')}
                                         required
                                     />
                                     <input
@@ -163,9 +160,6 @@ const Competencias = () => {
                                         value={formData.peso}
                                         onChange={handleChange}
                                         placeholder="Peso"
-                                        pattern="[A-Za-z\s]+"
-                                        onInvalid={(e) => e.target.setCustomValidity('El nombre solo puede contener letras.')}
-                                        onInput={(e) => e.target.setCustomValidity('')}
                                         required
                                     />
                                     <input
@@ -174,9 +168,6 @@ const Competencias = () => {
                                         value={formData.dimensiones}
                                         onChange={handleChange}
                                         placeholder="Dimensiones"
-                                        pattern="[A-Za-z\s]+"
-                                        onInvalid={(e) => e.target.setCustomValidity('El nombre solo puede contener letras.')}
-                                        onInput={(e) => e.target.setCustomValidity('')}
                                         required
                                     />
                                     <input
