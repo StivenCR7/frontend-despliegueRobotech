@@ -10,7 +10,7 @@ const PrivateRoute = ({ allowedRoles }) => {
   }
 
   if (!token) {
-    return <Navigate to="/" replace />; // Si no hay token, redirige a login
+    return <Navigate to="/login" replace />; // Si no hay token, redirige a login
   }
 
   if (!user || !user.roles.some((rol) => allowedRoles.includes(rol))) {
