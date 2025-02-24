@@ -62,17 +62,17 @@ const VentanaSolicitudes = () => {
 
   // Manejar la actualización de múltiples estados
   const handleEstadoChange = async () => {
-  const updates = Object.entries(selectedEstados); // [robotId, estado]
+  const updates = Object.entries(selectedEstados); // [clubId, estado]
 
   if (updates.length === 0) {
-    Swal.fire("Selecciona al menos un robot y un estado válido!");
+    alert("Selecciona al menos un club y un estado válido.");
     return;
   }
 
   try {
-    const requests = updates.map(([robotId, estado]) =>
+    const requests = updates.map(([clubId, estado]) =>
       api.put(
-        `/robots/estado/${robotId}`,
+        `/clubes/estado/${clubId}`,
         estado,
         { headers: { "Content-Type": "text/plain" } }
       )
@@ -80,31 +80,30 @@ const VentanaSolicitudes = () => {
 
     await Promise.all(requests); // Espera que todas las solicitudes se completen
 
-    // Actualizar los robots en el estado después de la actualización
-    const robotsActualizados = robots.map((robot) => {
-      const estadoSeleccionado = selectedEstados[robot.id];
+    // Actualizar los clubes en el estado después de la actualización
+    const updatedClubs = clubs.map((club) => {
+      const estadoSeleccionado = selectedEstados[club.id];
       if (estadoSeleccionado) {
-        return { ...robot, estados: { ...robot.estados, nombre: estadoSeleccionado } }; // Actualiza el estado del robot
+        return { ...club, estado: estadoSeleccionado }; // Actualiza el estado del club
       }
-      return robot;
+      return club;
     });
-    setRobots(robotsActualizados); // Establecer el nuevo estado de robots
+    setClubs(updatedClubs); // Establecer el nuevo estado de los clubes
 
     Swal.fire({
       title: "Estados actualizados correctamente!",
       icon: "success",
     });
-
+    
   } catch (err) {
-    console.error("Error al actualizar los estados:", err);
     Swal.fire({
       title: "Uups",
       text: "Error al actualizar los estados!",
       icon: "error",
     });
+    console.error("Error al actualizar los estados:", err);
   }
 };
-
 
   return (
     <>
