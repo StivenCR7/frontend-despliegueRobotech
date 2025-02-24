@@ -74,7 +74,7 @@ const HeaderClub = () => {
                         <Link to="/">Inicio</Link>
                     </li>
                     <li>
-                        <Link to="/ranking">Ir a Rankings</Link>
+                        <Link to="/ranking">Rankings</Link>
                     </li>
                     <li>
                         <Link to="/noticias">Noticias</Link>
