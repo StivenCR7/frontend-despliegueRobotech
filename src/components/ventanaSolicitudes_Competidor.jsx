@@ -60,40 +60,52 @@ const VentanaSolicitudesCompetidor = () => {
   // Calcular el total de páginas
   const totalPaginas = Math.ceil(competidores.length / competidoresPorPagina);
 
+  
   // Manejar la actualización de múltiples estados
-  const handleEstadoChange = async () => {
-    const updates = Object.entries(selectedEstados); // [competidorId, estado]
+const handleEstadoChange = async () => {
+  const updates = Object.entries(selectedEstados); // [competidorId, estado]
 
-    if (updates.length === 0) {
-      Swal.fire("Selecciona al menos un competidor y un estado válido!");
-      return;
-    }
+  if (updates.length === 0) {
+    Swal.fire("Selecciona al menos un competidor y un estado válido!");
+    return;
+  }
 
-    try {
-      const requests = updates.map(([competidorId, estado]) =>
-        api.put(
-          `/competidores/estado/${competidorId}`,
-          estado,
-          { headers: { "Content-Type": "text/plain" } }
-        )
-      );
+  try {
+    const requests = updates.map(([competidorId, estado]) =>
+      api.put(
+        `/competidores/estado/${competidorId}`,
+        estado,
+        { headers: { "Content-Type": "text/plain" } }
+      )
+    );
 
-      await Promise.all(requests); // Espera que todas las solicitudes se completen
-      Swal.fire({
-        title: "Estados actualizados correctamente!",
-        icon: "success",
-      });
+    await Promise.all(requests); // Espera que todas las solicitudes se completen
 
-      window.location.reload(); // Recarga la página para reflejar los cambios
-    } catch (err) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Error al actualizar los estados!",
-      });
-      console.error("Error al actualizar los estados:", err);
-    }
-  };
+    // Actualizar los competidores en el estado después de la actualización
+    const competidoresActualizados = competidores.map((competidor) => {
+      const estadoSeleccionado = selectedEstados[competidor.id];
+      if (estadoSeleccionado) {
+        return { ...competidor, estado: estadoSeleccionado }; // Actualiza el estado del competidor
+      }
+      return competidor;
+    });
+    setCompetidores(competidoresActualizados); // Establecer el nuevo estado de competidores
+
+    Swal.fire({
+      title: "Estados actualizados correctamente!",
+      icon: "success",
+    });
+
+  } catch (err) {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Error al actualizar los estados!",
+    });
+    console.error("Error al actualizar los estados:", err);
+  }
+};
+
 
   return (
     <>
