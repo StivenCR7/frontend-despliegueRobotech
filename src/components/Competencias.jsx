@@ -3,6 +3,7 @@ import api from "../api";
 import '../css/Competencias.css';
 import Header from "./header_club";
 import { useParams } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 
 const Competencias = () => {
@@ -40,19 +41,27 @@ const Competencias = () => {
     }, [torneoId, categoriaId]);
 
     useEffect(() => {
-        api.get('/competidores/listar')
-            .then(response => {
-                console.log('Competidores obtenidos:', response.data);
-                setCompetidores(response.data);
-                if (response.data.length > 0 && !formData.competidorId) {
-                    setFormData(prevState => ({
-                        ...prevState,
-                        competidorId: response.data[0].id
-                    }));
-                }
-            })
-            .catch(error => console.error('Error al obtener competidores:', error));
-    }, []);
+        // Decodifica el token para obtener el clubId
+        const decodedToken = jwtDecode(token);
+        const clubId = decodedToken.clubId;
+    
+        // Obtener competidores y filtrar solo los del club logueado
+        api
+          .get("/competidores/listar", {
+            headers: { Authorization: `Bearer ${token}` },
+          })
+          .then((response) => {
+            const competidoresFiltrados = response.data.filter(
+              (competidor) =>
+                competidor.clubes && competidor.clubes.id === Number(clubId)
+            );
+            setCompetidores(competidoresFiltrados);
+          })
+          .catch((error) =>
+            console.error("Error al obtener competidores:", error)
+          );
+      }, [token]);
+
 
 
     const handleChange = (e) => {
@@ -83,51 +92,58 @@ const Competencias = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        setMensaje('');
-
-        // Validar que competidorId no esté vacío
+    
+        // Validar que se haya seleccionado un competidor
         if (!formData.competidorId) {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Debe ingresar un competidorId válido",
-            });
-            setLoading(false);
-            return;
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Debe seleccionar un competidor válido",
+          });
+          setLoading(false);
+          return;
         }
-
+    
         const formDataToSend = new FormData();
-        formDataToSend.append('nombre', formData.nombre);
-        formDataToSend.append('peso', formData.peso);
-        formDataToSend.append('dimensiones', formData.dimensiones);
-        formDataToSend.append('competidorId', Number(formData.competidorId)); // Convertir a número
-        formDataToSend.append('categoriaId', formData.categoriaId); // Usar la categoría seleccionada
+        formDataToSend.append("nombre", formData.nombre);
+        formDataToSend.append("peso", formData.peso);
+        formDataToSend.append("dimensiones", formData.dimensiones);
+        // Convertir a número en caso de ser necesario
+        formDataToSend.append("competidorId", Number(formData.competidorId));
         if (formData.foto) {
-            formDataToSend.append('foto', formData.foto);
+          formDataToSend.append("foto", formData.foto);
         }
-
+    
         try {
-            const response = await api.post(
-                `/robots/registrar/${formData.categoriaId}`,
-                formDataToSend,
-                { headers: { Authorization: `Bearer ${token}` } }
-            );
-            Swal.fire({
-                title: "¡Robot registrado exitosamente!",
-                icon: "success",
-            });
-            setFormData({ nombre: '', peso: '', dimensiones: '', competidorId: '', foto: null, categoriaId: formData.categoriaId });
+          // Suponiendo que la ruta para registrar robots requiera el id de categoría u otro parámetro
+          const response = await api.post(
+            `/robots/registrar/${formData.categoriaId || 1}`, // Ajusta la URL según tus necesidades
+            formDataToSend,
+            { headers: { Authorization: `Bearer ${token}` } }
+          );
+          Swal.fire({
+            title: "¡Robot registrado exitosamente!",
+            icon: "success",
+          });
+          setFormData({
+            nombre: "",
+            peso: "",
+            dimensiones: "",
+            competidorId: "",
+            foto: null,
+            categoriaId: formData.categoriaId || 1,
+          });
         } catch (error) {
-            console.error("Error al Inscribir robot:", error);
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Error al crear robot!",
-            });
+          console.error("Error al registrar robot:", error);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Error al crear robot!",
+          });
         } finally {
-            setLoading(false);
+          setLoading(false);
         }
-    };
+      };
 
 
     return (
@@ -201,6 +217,7 @@ const Competencias = () => {
                                             </option>
                                         ))}
                                     </select>
+
 
 
                                     <label>Foto:</label>
