@@ -85,38 +85,49 @@ const VentanaSolicitudesRobot = () => {
 
   // Manejar la actualización de múltiples estados
   const handleEstadoChange = async () => {
-    const updates = Object.entries(selectedEstados); // [robotId, estado]
+  const updates = Object.entries(selectedEstados); // [robotId, estado]
 
-    if (updates.length === 0) {
-      Swal.fire("Selecciona al menos un robot y un estado válido!");
-      return;
-    }
+  if (updates.length === 0) {
+    Swal.fire("Selecciona al menos un robot y un estado válido!");
+    return;
+  }
 
-    try {
-      const requests = updates.map(([robotId, estado]) =>
-        api.put(
-          `/robots/estado/${robotId}`,
-          estado,
-          { headers: { "Content-Type": "text/plain" } }
-        )
-      );
+  try {
+    const requests = updates.map(([robotId, estado]) =>
+      api.put(
+        `/robots/estado/${robotId}`,
+        estado,
+        { headers: { "Content-Type": "text/plain" } }
+      )
+    );
 
-      await Promise.all(requests); // Espera que todas las solicitudes se completen
-      Swal.fire({
-        title: "Estados actualizados correctamente!",
-        icon: "success",
-      });
+    await Promise.all(requests); // Espera que todas las solicitudes se completen
 
-      window.location.reload(); // Recarga la página para reflejar los cambios
-    } catch (err) {
-      console.error("Error al actualizar los estados:", err);
-      Swal.fire({
-        title: "Uups",
-        text: "Error al actualizar los estados!",
-        icon: "Error",
-      });
-    }
-  };
+    // Actualizar los robots en el estado después de la actualización
+    const robotsActualizados = robots.map((robot) => {
+      const estadoSeleccionado = selectedEstados[robot.id];
+      if (estadoSeleccionado) {
+        return { ...robot, estados: { ...robot.estados, nombre: estadoSeleccionado } }; // Actualiza el estado del robot
+      }
+      return robot;
+    });
+    setRobots(robotsActualizados); // Establecer el nuevo estado de robots
+
+    Swal.fire({
+      title: "Estados actualizados correctamente!",
+      icon: "success",
+    });
+
+  } catch (err) {
+    console.error("Error al actualizar los estados:", err);
+    Swal.fire({
+      title: "Uups",
+      text: "Error al actualizar los estados!",
+      icon: "error",
+    });
+  }
+};
+
 
   return (
     <>
