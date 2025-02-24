@@ -104,10 +104,9 @@ const VentanaRepClub = () => {
     // Función para registrar un competidor
     const registrarCompetidor = async (e) => {
         e.preventDefault();
-
+    
         // Verificar si el DNI ya está en la lista de competidores
         const dniDuplicado = competidores.some(competidor => competidor.dni === nuevoCompetidor.dni);
-
         if (dniDuplicado) {
             Swal.fire({
                 icon: 'error',
@@ -116,10 +115,9 @@ const VentanaRepClub = () => {
             });
             return; // Salir de la función para evitar el registro
         }
-
+    
         // Verificar si el correo ya está en la lista de competidores
         const correoDuplicado = competidores.some(competidor => competidor.correo === nuevoCompetidor.correo);
-
         if (correoDuplicado) {
             Swal.fire({
                 icon: 'error',
@@ -128,11 +126,22 @@ const VentanaRepClub = () => {
             });
             return; // Salir de la función para evitar el registro
         }
-
+        
+        // Verificar si el alias ya está en la lista de competidores
+        const aliasDuplicado = competidores.some(competidor => competidor.alias === nuevoCompetidor.alias);
+        if (aliasDuplicado) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Alias Duplicado',
+                text: 'El alias ya está en uso. Por favor, utiliza otro.',
+            });
+            return; // Salir de la función para evitar el registro
+        }
+    
         try {
             const decodedToken = jwtDecode(token);
             const clubId = decodedToken.clubId;
-
+    
             // Registrar competidor con el club logueado
             const response = await api.post(
                 "/competidores/add",
@@ -146,13 +155,13 @@ const VentanaRepClub = () => {
                     },
                 }
             );
-
+    
             Swal.fire({
                 icon: 'success',
                 title: 'Registro Exitoso',
                 text: response.data.message || "Competidor registrado correctamente.",
             });
-
+    
             setNuevoCompetidor({
                 nombre: "",
                 apellido: "",
@@ -162,7 +171,7 @@ const VentanaRepClub = () => {
                 correo: "",
             });
             setShowModal(false); // Cerrar el modal tras registrar
-
+    
             // Recargar competidores después de registrar uno
             const responseCompetidores = await api.get("/competidores/listar");
             const competidoresFiltrados = responseCompetidores.data.filter(
