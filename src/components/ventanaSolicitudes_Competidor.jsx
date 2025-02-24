@@ -30,10 +30,10 @@ const VentanaSolicitudesCompetidor = () => {
 
   // Actualizar la lista de competidores para la página actual
   const actualizarCompetidoresPagina = (competidores) => {
-    const primerIndice = (paginaActual - 1) * competidoresPorPagina;
-    const competidoresPaginaActual = competidores.slice(primerIndice, primerIndice + competidoresPorPagina);
-    setCompetidoresPagina(competidoresPaginaActual);
-  };
+  const primerIndice = (paginaActual - 1) * competidoresPorPagina;
+  const competidoresPaginaActual = competidores.slice(primerIndice, primerIndice + competidoresPorPagina);
+  setCompetidoresPagina(competidoresPaginaActual);
+};
 
   // Cambiar de página anterior
   const handlePaginaAnterior = () => {
@@ -59,7 +59,10 @@ const VentanaSolicitudesCompetidor = () => {
 
   // Calcular el total de páginas
   const totalPaginas = Math.ceil(competidores.length / competidoresPorPagina);
-
+  // useEffect para actualizar la página correctamente y evitar la recarga
+  useEffect(() => {
+    actualizarCompetidoresPagina(competidores);
+  }, [competidores, paginaActual]);
   
   // Manejar la actualización de múltiples estados
 const handleEstadoChange = async () => {
