@@ -40,16 +40,20 @@ const Competencias = () => {
     }, [torneoId, categoriaId]);
 
     useEffect(() => {
-        // Obtener competidores
-        api.get('/competidores/listar', {
-            headers: { Authorization: `Bearer ${token}` }
-        })
+        api.get('/competidores/listar')
             .then(response => {
                 console.log('Competidores obtenidos:', response.data);
                 setCompetidores(response.data);
+                if (response.data.length > 0 && !formData.competidorId) {
+                    setFormData(prevState => ({
+                        ...prevState,
+                        competidorId: response.data[0].id
+                    }));
+                }
             })
             .catch(error => console.error('Error al obtener competidores:', error));
     }, []);
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -81,11 +85,22 @@ const Competencias = () => {
         setLoading(true);
         setMensaje('');
 
+        // Validar que competidorId no esté vacío
+        if (!formData.competidorId) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Debe ingresar un competidorId válido",
+            });
+            setLoading(false);
+            return;
+        }
+
         const formDataToSend = new FormData();
         formDataToSend.append('nombre', formData.nombre);
         formDataToSend.append('peso', formData.peso);
         formDataToSend.append('dimensiones', formData.dimensiones);
-        formDataToSend.append('competidorId', formData.competidorId);
+        formDataToSend.append('competidorId', Number(formData.competidorId)); // Convertir a número
         formDataToSend.append('categoriaId', formData.categoriaId); // Usar la categoría seleccionada
         if (formData.foto) {
             formDataToSend.append('foto', formData.foto);
@@ -101,7 +116,7 @@ const Competencias = () => {
                 title: "¡Robot registrado exitosamente!",
                 icon: "success",
             });
-            setFormData({ nombre: '', peso: '', dimensiones: '', competidorId: '', foto: null, categoriaId: categoriaId }); // Reiniciar el formulario
+            setFormData({ nombre: '', peso: '', dimensiones: '', competidorId: '', foto: null, categoriaId: formData.categoriaId });
         } catch (error) {
             console.error("Error al Inscribir robot:", error);
             Swal.fire({
@@ -112,8 +127,8 @@ const Competencias = () => {
         } finally {
             setLoading(false);
         }
-        
     };
+
 
     return (
         <>
@@ -175,23 +190,18 @@ const Competencias = () => {
                                         value={selectedCategoria ? selectedCategoria.nombre : ''} readOnly
                                         onChange={handleChange}
                                         placeholder="Categoria Seleccionada:"
-                                        pattern="[A-Za-z\s]+"
-                                        onInvalid={(e) => e.target.setCustomValidity('El nombre solo puede contener letras.')}
-                                        onInput={(e) => e.target.setCustomValidity('')}
                                         required
                                     />
                                     <label>Selecciona un Competidor:</label>
                                     <select name="competidorId" value={formData.competidorId} onChange={handleChange} required>
-                                        {competidores.length > 0 ? (
-                                            competidores.map((competidor) => (
-                                                <option key={competidor.id} value={competidor.id}>
-                                                    {competidor.nombre}
-                                                </option>
-                                            ))
-                                        ) : (
-                                            <option value="">No hay competidores disponibles</option>
-                                        )}
+                                        <option value="">Seleccione un competidor</option>
+                                        {competidores.map((competidor) => (
+                                            <option key={competidor.id} value={competidor.id}>
+                                                {competidor.nombre}
+                                            </option>
+                                        ))}
                                     </select>
+
 
                                     <label>Foto:</label>
                                     <label className="label-file" htmlFor="foto">Seleccionar Imagen</label>
