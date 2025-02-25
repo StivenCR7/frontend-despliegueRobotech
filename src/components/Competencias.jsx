@@ -158,7 +158,7 @@ const Competencias = () => {
                     <div className="background-crobot">
                         <div className="contenido-crobot">
                             {selectedCategoria && selectedCategoria.banner ? (
-                                <img src={`${api.defaults.baseURL}/images/${selectedCategoria.banner}`} alt="Banner de la categoría" className="banner-image" />
+                                <img src={selectedCategoria.banner} alt="Banner de la categoría" className="banner-image" />
                             ) : (
                                 <p>Selecciona una categoría para ver su información</p>
                             )}
