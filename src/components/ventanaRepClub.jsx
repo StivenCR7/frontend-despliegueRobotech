@@ -447,7 +447,7 @@ const VentanaRepClub = () => {
                                                         width={75}
                                                         height={75}
                                                         style={{ cursor: 'pointer' }}
-                                                        onClick={() => handleImageClick(robot.foto}`)
+                                                        onClick={() => handleImageClick(robot.foto)}
                                                     />
                                                 </td>
                                                 <td>{robot.competidores.nombre}</td>
