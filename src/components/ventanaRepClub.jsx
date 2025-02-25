@@ -442,12 +442,12 @@ const VentanaRepClub = () => {
                                                 <td>{robot.dimensiones}</td>
                                                 <td>
                                                     <img
-                                                        src={`${api.defaults.baseURL}/images/${robot.foto}`}
+                                                        src={robot.foto}
                                                         alt={robot.nombre}
                                                         width={75}
                                                         height={75}
                                                         style={{ cursor: 'pointer' }}
-                                                        onClick={() => handleImageClick(`${api.defaults.baseURL}/images/${robot.foto}`)}
+                                                        onClick={() => handleImageClick(robot.foto}`)
                                                     />
                                                 </td>
                                                 <td>{robot.competidores.nombre}</td>
