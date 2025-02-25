@@ -53,7 +53,7 @@ const Noticias = () => {
           {noticias.map((noticia) => (
             <div key={noticia.id} className="noticia">
               <img
-                src={`${api.defaults.imageURL}${noticia.imagen}`}
+                src={noticia.imagen}
                 alt="Imagen"
                 className="imagen-noti"
               />
