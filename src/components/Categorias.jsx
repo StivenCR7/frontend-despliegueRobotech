@@ -79,7 +79,7 @@ const Categorias = () => {
             <div className="categorias-grid">
                 {categorias.map((categoria) => (
                     <div key={categoria.id} className="categoria-card" onClick={() => abrirFormulario(categoria)}>
-                        <img src={`${api.defaults.baseURL}/images/${categoria.banner}`} alt={categoria.nombre} className="categoria-banner" />
+                        <img src={categoria.banner} alt={categoria.nombre} className="categoria-banner" />
                         <h2>{categoria.nombre}</h2>
                     </div>
                 ))}
