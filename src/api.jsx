@@ -2,7 +2,10 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: 
-   "https://torneorobotech-dzawctb0axeggxe7.brazilsouth-01.azurewebsites.net" 
+   "https://torneorobotech-dzawctb0axeggxe7.brazilsouth-01.azurewebsites.net" //URL api
+    
+  // Agregamos una propiedad personalizada para la URL de las imágenes
+  api.defaults.imageURL = "https://storagetorneorobotech.blob.core.windows.net/imagenes/";
 });
 
 // Interceptor para agregar el token en cada solicitud
