@@ -170,7 +170,7 @@ const VentanaSolicitudesRobot = () => {
                   <td>{robot.dimensiones}</td>
                   <td>
                     <img
-                      src={`${api.defaults.baseURL}/images/${robot.foto}`}
+                      src={robot.foto}
                       alt={robot.nombre}
                       width={75}
                       height={75}
