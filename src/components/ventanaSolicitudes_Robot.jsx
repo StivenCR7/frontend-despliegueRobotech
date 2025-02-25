@@ -175,7 +175,7 @@ const VentanaSolicitudesRobot = () => {
                       width={75}
                       height={75}
                       style={{ cursor: 'pointer' }}
-                      onClick={() => handleImageClick(`${api.defaults.baseURL}/images/${robot.foto}`)}
+                      onClick={() => handleImageClick(robot.foto)}
                     />
                   </td>
                   <td>{robot.competidores.nombre}</td>
