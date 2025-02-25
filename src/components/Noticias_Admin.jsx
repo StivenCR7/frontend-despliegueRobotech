@@ -122,7 +122,7 @@ const Noticias = () => {
         <div className="noticias-container">
           {noticias.map((noticia) => (
             <div key={noticia.id} className="noticia">
-              <img src={`${noticia.imagen}`} alt="Imagen" className="imagen-noti" />
+              <img src={noticia.imagen} alt="Imagen" className="imagen-noti" />
               <h2>{noticia.titulo}</h2>
               <p>{noticia.descripcion}</p>
               {Admin && (
