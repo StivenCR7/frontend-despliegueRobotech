@@ -176,7 +176,12 @@ function Inicioo() {
 
                 <ul  className="texto-truncado">
                   <li>
-                    <img src={`${api.defaults.baseURL}/images/${noticia.imagen}`} alt="" width={60} height={60} />
+                    <img
+                      src={`${api.defaults.imageURL}${noticia.imagen}`}
+                      alt="Imagen"
+                      className="imagen-noti"
+                      width={60} height={60}
+                    />
                     <p>{noticia.titulo}</p>
                     <span>{noticia.descripcion}</span>
                   </li>
