@@ -104,14 +104,29 @@ const VentanaSolicitudesRobot = () => {
     await Promise.all(requests); // Espera que todas las solicitudes se completen
 
     // Actualizar los robots en el estado después de la actualización
-    const robotsActualizados = robots.map((robot) => {
-      const estadoSeleccionado = selectedEstados[robot.id];
-      if (estadoSeleccionado) {
-        return { ...robot, estados: { ...robot.estados, nombre: estadoSeleccionado } }; // Actualiza el estado del robot
-      }
-      return robot;
-    });
-    setRobots(robotsActualizados); // Establecer el nuevo estado de robots
+    const handleEstadoChange = async () => {
+  const updates = Object.entries(selectedEstados); // [robotId, estado]
+
+  if (updates.length === 0) {
+    Swal.fire("Selecciona al menos un robot y un estado válido!");
+    return;
+  }
+
+  try {
+    const requests = updates.map(([robotId, estado]) =>
+      api.put(`/robots/estado/${robotId}`, estado, {
+        headers: { "Content-Type": "text/plain" },
+      })
+    );
+
+    await Promise.all(requests); // Espera que todas las solicitudes se completen
+
+    // Nueva solicitud GET para obtener la lista actualizada desde el backend
+    const response = await api.get(`/robots/listar/${categoriaId}`);
+    setRobots(response.data);
+
+    // Limpia los estados seleccionados después de la actualización
+    setSelectedEstados({});
 
     Swal.fire({
       title: "Estados actualizados correctamente!",
