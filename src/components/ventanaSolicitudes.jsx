@@ -83,18 +83,17 @@ const VentanaSolicitudes = () => {
     // Actualizar los clubes en el estado después de la actualización
     const updatedClubs = clubs.map((club) => {
       const estadoSeleccionado = selectedEstados[club.id];
-      if (estadoSeleccionado) {
-        return { ...club, estado: estadoSeleccionado }; // Actualiza el estado del club
-      }
-      return club;
+      return estadoSeleccionado ? { ...club, estado: estadoSeleccionado } : club;
     });
+
     setClubs(updatedClubs); // Establecer el nuevo estado de los clubes
+    actualizarClubesPagina(updatedClubs); // ACTUALIZA la lista en la tabla
 
     Swal.fire({
       title: "Estados actualizados correctamente!",
       icon: "success",
     });
-    
+
   } catch (err) {
     Swal.fire({
       title: "Uups",
@@ -104,6 +103,7 @@ const VentanaSolicitudes = () => {
     console.error("Error al actualizar los estados:", err);
   }
 };
+
 
   return (
     <>
