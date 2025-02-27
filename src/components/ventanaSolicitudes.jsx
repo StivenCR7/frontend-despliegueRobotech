@@ -62,12 +62,12 @@ const VentanaSolicitudes = () => {
 
   // Manejar la actualización de múltiples estados
   // Actualizar la lista de clubes para la página actual cuando `clubs` cambie
-useEffect(() => {
-  actualizarClubesPagina(clubs);
-}, [clubs, paginaActual]); // Se ejecuta cada vez que `clubs` o `paginaActual` cambian
+  useEffect(() => {
+    actualizarClubesPagina(clubs);
+  }, [clubs, paginaActual]); // Se ejecuta cada vez que `clubs` o `paginaActual` cambian
   
-// Manejar la actualización de múltiples estados
-const handleEstadoChange = async () => {
+  // Manejar la actualización de múltiples estados
+  const handleEstadoChange = async () => {
   const updates = Object.entries(selectedEstados); // [clubId, estado]
 
   if (updates.length === 0) {
@@ -86,15 +86,12 @@ const handleEstadoChange = async () => {
 
     await Promise.all(requests); // Espera que todas las solicitudes se completen
 
-    // Actualizar los clubes en el estado después de la actualización
-    setClubs((prevClubs) => {
-      const updatedClubs = prevClubs.map((club) => {
-        const estadoSeleccionado = selectedEstados[club.id];
-        return estadoSeleccionado ? { ...club, estado: estadoSeleccionado } : club;
-      });
+    // 🔥 Obtener nuevamente los clubes desde el backend para asegurar datos frescos
+    const response = await api.get("/clubes");
+    setClubs(response.data); // Actualiza los clubes con datos recientes
 
-      return [...updatedClubs]; // Forzar re-render
-    });
+    // 🔥 Actualizar la lista de clubes para la página actual
+    actualizarClubesPagina(response.data);
 
     Swal.fire({
       title: "Estados actualizados correctamente!",
