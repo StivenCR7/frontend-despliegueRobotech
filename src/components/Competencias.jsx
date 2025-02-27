@@ -54,6 +54,7 @@ const Competencias = () => {
             const competidoresFiltrados = response.data.filter(
               (competidor) =>
                 competidor.clubes && competidor.clubes.id === Number(clubId)
+                &&  competidor.estados.nombre === "aprobado"
             );
             setCompetidores(competidoresFiltrados);
           })
