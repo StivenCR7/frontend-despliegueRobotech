@@ -75,24 +75,19 @@ const handleEstadoChange = async () => {
 
   try {
     const requests = updates.map(([competidorId, estado]) =>
-      api.put(
-        `/competidores/estado/${competidorId}`,
-        estado,
-        { headers: { "Content-Type": "text/plain" } }
-      )
+      api.put(`/competidores/estado/${competidorId}`, estado, {
+        headers: { "Content-Type": "text/plain" },
+      })
     );
 
     await Promise.all(requests); // Espera que todas las solicitudes se completen
 
-    // Actualizar los competidores en el estado después de la actualización
-    const competidoresActualizados = competidores.map((competidor) => {
-      const estadoSeleccionado = selectedEstados[competidor.id];
-      if (estadoSeleccionado) {
-        return { ...competidor, estado: estadoSeleccionado }; // Actualiza el estado del competidor
-      }
-      return competidor;
-    });
-    setCompetidores(competidoresActualizados); // Establecer el nuevo estado de competidores
+    // Nueva solicitud GET para obtener la lista actualizada desde el backend
+    const response = await api.get("/competidores/listar");
+    setCompetidores(response.data);
+
+    // Limpia los estados seleccionados después de la actualización
+    setSelectedEstados({});
 
     Swal.fire({
       title: "Estados actualizados correctamente!",
@@ -108,7 +103,6 @@ const handleEstadoChange = async () => {
     console.error("Error al actualizar los estados:", err);
   }
 };
-
 
   return (
     <>
