@@ -38,22 +38,29 @@ const VentanaTrabajador = () => {
     }, []);
 
     const handleActualizarDatos = async () => {
-        try {
-            await actualizarDatosContacto(trabajador.id, datosEditados);
-            Swal.fire({
-                icon: 'success',
-                title: 'Actualización Exitosa',
-                text: 'Los datos de contacto se han actualizado correctamente.',
-            });
-        } catch (error) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error al Actualizar',
-                text: 'Ocurrió un error al intentar actualizar los datos. Por favor, inténtalo de nuevo.',
-            });
-            console.error("Error al actualizar los datos:", error);
-        }
-    };
+    try {
+        await actualizarDatosContacto(trabajador.id, datosEditados);
+
+        // Hacer una nueva solicitud para obtener los datos actualizados
+        const response = await obtenerPorIdTrabajador(trabajador.id);
+        setTrabajador(response.data); // Actualiza el estado con los datos nuevos
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Actualización Exitosa',
+            text: 'Los datos de contacto se han actualizado correctamente.',
+        });
+
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error al Actualizar',
+            text: 'Ocurrió un error al intentar actualizar los datos. Por favor, inténtalo de nuevo.',
+        });
+        console.error("Error al actualizar los datos:", error);
+    }
+};
+
 
     return (
         <>
