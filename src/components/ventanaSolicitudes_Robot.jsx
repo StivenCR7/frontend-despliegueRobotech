@@ -83,41 +83,21 @@ const VentanaSolicitudesRobot = () => {
     }
   }, [categoriaId]);
 
-  // Manejar la actualización de múltiples estados
-  const handleEstadoChange = async () => {
-  const updates = Object.entries(selectedEstados); // [robotId, estado]
-
-  if (updates.length === 0) {
-    Swal.fire("Selecciona al menos un robot y un estado válido!");
-    return;
-  }
-
-  try {
-    const requests = updates.map(([robotId, estado]) =>
-      api.put(
-        `/robots/estado/${robotId}`,
-        estado,
-        { headers: { "Content-Type": "text/plain" } }
-      )
-    );
-
-    await Promise.all(requests); // Espera que todas las solicitudes se completen
-
     // Actualizar los robots en el estado después de la actualización
     const handleEstadoChange = async () => {
-  const updates = Object.entries(selectedEstados); // [robotId, estado]
+    const updates = Object.entries(selectedEstados); // [robotId, estado]
 
-  if (updates.length === 0) {
-    Swal.fire("Selecciona al menos un robot y un estado válido!");
-    return;
-  }
+    if (updates.length === 0) {
+      Swal.fire("Selecciona al menos un robot y un estado válido!");
+      return;
+    }
 
-  try {
-    const requests = updates.map(([robotId, estado]) =>
-      api.put(`/robots/estado/${robotId}`, estado, {
-        headers: { "Content-Type": "text/plain" },
-      })
-    );
+    try {
+      const requests = updates.map(([robotId, estado]) =>
+        api.put(`/robots/estado/${robotId}`, estado, {
+          headers: { "Content-Type": "text/plain" },
+        })
+      );
 
     await Promise.all(requests); // Espera que todas las solicitudes se completen
 
