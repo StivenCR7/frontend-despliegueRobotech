@@ -57,29 +57,48 @@ const CrearEventos = () => {
     const cerrarModalTorneo = () => {
         setMostrarModal(false);
     };
-
     const handleSubmitTorneo = async (e) => {
         e.preventDefault();
+    
+        // Obtener la fecha actual en formato "YYYY-MM-DD"
+        const hoy = new Date().toISOString().split('T')[0];
+    
+        // Recuperar torneos creados hoy desde el localStorage
+        const torneosGuardados = JSON.parse(localStorage.getItem("torneosCreados")) || {};
+        const torneosHoy = torneosGuardados[hoy] || 0;
+    
+        if (modo === "agregar" && torneosHoy >= 2) {
+            Swal.fire({
+                icon: "warning",
+                title: "Límite alcanzado",
+                text: "Solo puedes crear 2 torneos por día.",
+            });
+            return;
+        }
+    
         if (new Date(torneoEditado.fecha_inicio) > new Date(torneoEditado.fecha_fin)) {
-
             Swal.fire("La fecha de inicio no puede ser posterior a la fecha de fin!");
             return;
         }
+    
         try {
             let response;
             if (modo === "agregar") {
                 response = await api.post("torneos/crear", torneoEditado);
+                
+                // Actualizar el contador en localStorage
+                torneosGuardados[hoy] = torneosHoy + 1;
+                localStorage.setItem("torneosCreados", JSON.stringify(torneosGuardados));
             } else if (modo === "editar") {
                 response = await api.put(`torneos/editar/${torneoEditado.id}`, torneoEditado);
             }
-
+    
             Swal.fire({
-                title: "Torneo creado con éxito!",
+                title: "Torneo guardado con éxito!",
                 icon: "success",
             });
-
-            // Actualiza el estado de los torneos con la nueva información
-            cargarTorneos(); // Puedes hacer esto para obtener los torneos con las categorías actualizadas.
+    
+            cargarTorneos(); // Recargar la lista
             cerrarModalTorneo();
         } catch (error) {
             console.error("Error al guardar torneo:", error);
